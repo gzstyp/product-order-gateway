@@ -14,7 +14,7 @@
     </modules>
 
     <description>
-    	已添加gateway网关模块
+    	已添加gateway路由网关模块
         product-service,商品服务,供订单服务调用,相当于服务提供者;
         order-service,订单服务,它会内部调用商品服务;供web前端提供接口服务;
     </description>
