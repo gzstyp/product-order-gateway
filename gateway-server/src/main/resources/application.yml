@@ -1,0 +1,13 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: gateway-server #应用名,同一实例下的集群要相同
+  cloud:
+    gateway:
+      #路由规则
+      routes:
+        - id: product-service            #路由id,唯一,其中的 - 横线 表示的是 list 或 数组
+          uri: http://localhost:7070/    #目标到服务的地址
+          predicates:                    #断言,通过判断|断言来匹配路由请求规则
+            - Path=/product/**           #path路由规则;匹配对应的 url 的请求,将匹配到的请求追加在目标的 url 之后;例如请求 http://localhost:9000/product/1 将会路由到 http://localhost:7070/product/1
