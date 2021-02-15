@@ -22,7 +22,7 @@ public class ProductServiceFallbackFactory implements FallbackFactory<ProductSer
                 logger.error("product-service的服务方法selectProductById()出现了异常,信息如下:"+throwable.getMessage());
                 final Product product = new Product();
                 product.setId(1024);
-                product.setProductName("托底数据");
+                product.setProductName("fwtai,oh,sorry!托底数据");
                 product.setProductNum(8);
                 product.setProductPrice(88.00);
                 return product;
