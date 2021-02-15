@@ -6,6 +6,8 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -29,8 +31,13 @@ public class AccessFilter implements GlobalFilter, Ordered{
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange,final GatewayFilterChain chain){
         final ServerHttpRequest request = exchange.getRequest();
+        final ServerHttpResponse response = exchange.getResponse();
         final String uri = request.getURI().getPath();
-        if(uri.contains("/product/1")){//放行
+        if (request.getMethod() == HttpMethod.OPTIONS) {
+            response.setStatusCode(HttpStatus.OK);
+            return Mono.empty();
+        }
+        if(uri.contains("/user/login")){//放行
             return chain.filter(exchange);//继续执行下一个过滤器
         }
         final String accessTokenUrl = request.getQueryParams().getFirst("accessToken");
@@ -40,7 +47,6 @@ public class AccessFilter implements GlobalFilter, Ordered{
             return chain.filter(exchange);//继续执行下一个过滤器
         }else{
             logger.warn("accessToken 为null哦");
-            final ServerHttpResponse response = exchange.getResponse();
             response.getHeaders().add("Content-Type","text/html;charset=utf-8");
             final String msg = "{\"code\":401,\"msg\":\"没有操作权限\"}";
             final DataBuffer db = response.bufferFactory().wrap(msg.getBytes());
