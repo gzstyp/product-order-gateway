@@ -2,14 +2,14 @@ package com.example.filter;
 
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//配置网关路由,配置多个,当然仅配一个也是ok
+//通过硬编码的普通的网关过滤器配置,配置多个,当然仅配一个也是ok;但是它不能和application.yml文件里的routes下的filters一起使用???仅能二选一;一般情况下硬编码用不到!!!
 @Configuration
-public class GatewayConfig{
+public class GatewayFilterConfig{
 
-    @Bean // 通过访问gateway http://127.0.0.1:9000/product/3 http://127.0.0.1:9000/order/3
+    //通过访问 http://127.0.0.1:9000/product/3 http://127.0.0.1:9000/order/3
+    //@Bean //它不能和application.yml文件里的routes下的filters一起使用???仅能二选一;不要紧硬编码,推荐配置文件的配置使用
     public RouteLocator routeLocator(final RouteLocatorBuilder builder){
         return builder.routes().route(route ->
             route.path("/product/**").uri("lb://product-service").filters(new ProductGateWayFilter()).id("product-service")

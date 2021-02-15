@@ -9,8 +9,8 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-/**全局过滤器作用于所有的路由，不需要单独配置，我们可以用它来实现很多统一化处理的业务需求，比如权限认证，IP访问限制等等
- * GatewayFilter ： 只对指定的路由起作用
+/**示例代码,待删除,通过注解 @Component 注入到spring容器中即可,全局过滤器作用于所有的路由，不需要单独配置，我们可以用它来实现很多统一化处理的业务需求，比如权限认证，IP访问限制等等
+ * GatewayFilter ： 只对指定的普通路由起作用
  * @作者 田应平
  * @版本 v1.0
  * @创建时间 2019-06-29 11:46

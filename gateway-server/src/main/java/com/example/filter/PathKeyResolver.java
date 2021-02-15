@@ -15,17 +15,16 @@ import reactor.core.publisher.Mono;
  * @官网 http://www.fwtai.com
 */
 @Configuration
-public class KeyResolverConfig{
+public class PathKeyResolver{
 
     @Bean
-    public KeyResolver pathKeyResolver(){
+    public KeyResolver pathKeysResolver(){
         /*return new KeyResolver(){
             @Override
             public Mono<String> resolve(final ServerWebExchange exchange){
                 return Mono.just(String.valueOf(exchange.getRequest().getPath()));
             }
         };*/
-        System.out.println("有执行吗?");
         return exchange -> Mono.just(exchange.getRequest().getURI().getPath());//简写
     }
 }

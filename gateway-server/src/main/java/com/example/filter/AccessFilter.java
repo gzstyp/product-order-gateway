@@ -10,12 +10,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 鉴权|权限验证过滤器
+ * 全局过滤器,鉴权|权限验证过滤器,ok
  * @作者 田应平
  * @版本 v1.0
  * @创建时间 2021-02-15 14:56
@@ -23,7 +22,7 @@ import reactor.core.publisher.Mono;
  * @Email service@dwlai.com
  * @官网 http://www.fwtai.com
 */
-@Component
+//@Component//开启后url或请求头没有token则访问不了,正式环境则要开启
 public class AccessFilter implements GlobalFilter, Ordered{
 
     final Logger logger = LoggerFactory.getLogger(AccessFilter.class);

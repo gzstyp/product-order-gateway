@@ -3,12 +3,12 @@ package com.example.filter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 自定义全局的过滤器,它无需通过Bean注入,而直接通过注解 @Component 注入到spring容器中即可
+ * 示例代码,待删除,只是说明可以配置定义多个全局的过滤器而已;它无需通过Bean注入,而直接通过注解 @Component 注入到spring容器中即可
+ * @参考 <uri>https://www.cnblogs.com/gqymy/p/13794583.html</uri>
  * @作者 田应平
  * @版本 v1.0
  * @创建时间 2021-02-15 14:46
@@ -16,8 +16,8 @@ import reactor.core.publisher.Mono;
  * @Email service@dwlai.com
  * @官网 http://www.fwtai.com
 */
-@Component
-public class MyGlobalFilter implements GlobalFilter, Ordered{
+//@Component
+public class CustomGlobalFilter implements GlobalFilter, Ordered{
 
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange,final GatewayFilterChain chain){
