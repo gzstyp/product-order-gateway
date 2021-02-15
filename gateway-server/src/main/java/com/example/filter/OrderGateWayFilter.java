@@ -6,7 +6,7 @@ import org.springframework.core.Ordered;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-//自定义网关过滤器(不是全局过滤器)
+//自定义网关过滤器(不是全局过滤器),可以用于用户服务模块或权限服务模块
 public class OrderGateWayFilter implements GatewayFilter, Ordered{
 
     // 通过访问gateway测试 http://127.0.0.1:9000/order/2
