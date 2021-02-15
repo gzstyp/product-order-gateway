@@ -18,6 +18,6 @@ public class ProductGateWayFilter implements GatewayFilter, Ordered{
 
     @Override
     public int getOrder(){
-        return 0;
+        return 10;
     }
 }
