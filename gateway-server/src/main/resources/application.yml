@@ -10,6 +10,21 @@ spring:
         locator:
           enabled: true #是否开启基于服务名发现的路由规则,通过serviceId转发到具体的服务名实例,默认是关闭
           lower-case-service-id: true #是否将服务名小写,默认是关闭
+      #跨域请求
+      globalcors:
+        cors-configurations:
+          '[/**]':  #gateway网关上所有的URI请求都采用下面的配置处理
+            allow-credentials: true #允许携带认证信息
+            allowed-origins:
+              - "http://192.168.3.108"
+              - "http://api.fwtai.com"
+              - "https://api.fwtai.com"
+            allowed-headers: "*"
+            allowed-methods:
+              - GET
+              - POST
+              - OPTIONS
+            max-age: 7200
 eureka:
   instance:
     prefer-ip-address: true
