@@ -50,6 +50,10 @@ public class AccessFilter implements GlobalFilter, Ordered{
             response.getHeaders().add("Content-Type","text/html;charset=utf-8");
             final String msg = "{\"code\":401,\"msg\":\"没有操作权限\"}";
             final DataBuffer db = response.bufferFactory().wrap(msg.getBytes());
+            //还可以重定向获取请求的资源
+            //response.setStatusCode(HttpStatus.SEE_OTHER);
+            //response.getHeaders().set(HttpHeaders.LOCATION,url);
+            //return response.setComplete();
             return response.writeWith(Mono.just(db));
         }
     }
