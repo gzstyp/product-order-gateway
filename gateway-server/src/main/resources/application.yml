@@ -5,13 +5,11 @@ spring:
     name: gateway-server #应用名,同一实例下的集群要相同
   cloud:
     gateway:
-      #路由规则
-      routes:
-        - id: product-service            #路由id,唯一,其中的 - 横线 表示的是 list 或 数组
-          uri: lb://product-service      #lb是负载均衡的英文单词首写字母微服务目标的地址,根据服务名从注册中心获取服务请求地址
-          predicates:                    #断言,通过判断|断言来匹配路由请求规则
-            - Path=/product/**           #path路由规则;匹配对应的 url 的请求,将匹配到的请求追加在目标的 url 之后;例如请求 http://localhost:9000/product/1 将会路由到 http://localhost:7070/product/1
-#把gateway路由网关注册到服务注册中心,通过注册中心实现路由,需要依赖 spring-cloud-starter-netflix-eureka-client
+      #使用服务id服务名转发
+      discovery:
+        locator:
+          enabled: true #是否开启基于服务名发现的路由规则,通过serviceId转发到具体的服务名实例,默认是关闭
+          lower-case-service-id: true #是否将服务名小写,默认是关闭
 eureka:
   instance:
     prefer-ip-address: true
