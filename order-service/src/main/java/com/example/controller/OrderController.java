@@ -16,6 +16,7 @@ public class OrderController{
     @Resource
     private OrderService orderService;
 
+    // http://127.0.0.1:9090/order/21021509
     @GetMapping("/{id}")
     public Order selectProductById(@PathVariable("id") final Integer id){
         return orderService.selectOrderById(id);
