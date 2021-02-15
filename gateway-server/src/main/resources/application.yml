@@ -13,7 +13,7 @@ spring:
       #跨域请求
       globalcors:
         cors-configurations:
-          '[/**]':  #gateway网关上所有的URI请求都采用下面的配置处理
+          '[/**]':  #gateway网关上所有的URI请求都采用下面的配置处理,https://www.cnblogs.com/guanxiaohe/p/12065913.html
             allow-credentials: true #允许携带认证信息
             allowed-origins:
               - "http://192.168.3.108"
@@ -28,7 +28,7 @@ spring:
 #限流,它不能和自定义的硬编码网关过滤器com.example.filter.GatewayFilterConfig一起使用???仅能即二选一,推荐使用配置的方式;若不配置限流的话,直接删除即可
       routes:
         - id: product-service
-          uri: lb://product-service
+          uri: lb://product-service #lb代表从注册中心获取服务
           predicates:
             - Path=/product/**
           filters:
