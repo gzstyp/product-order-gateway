@@ -8,7 +8,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 自定义全局的过滤器,它无需通过Bean注册,而直接通过注解 @Component 即可
+ * 自定义全局的过滤器,它无需通过Bean注入,而直接通过注解 @Component 注入到spring容器中即可
  * @作者 田应平
  * @版本 v1.0
  * @创建时间 2021-02-15 14:46
