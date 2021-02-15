@@ -25,7 +25,7 @@ spring:
               - POST
               - OPTIONS
             max-age: 7200
-#限流,它不能和自定义的硬编码网关过滤器com.example.filter.GatewayFilterConfig一起使用???仅能即二选一,推荐使用配置的方式;若不配置限流的话,直接删除即可
+#限流,它不能和自定义的硬编码网关过滤器com.example.filter.GatewayFilterConfig一起使用???仅能即二选一,推荐使用配置的方式;若不配置限流的话,直接删除即可;https://blog.csdn.net/z69183787/article/details/80110811
       routes:
         - id: product-service
           uri: lb://product-service #lb代表从注册中心获取服务
@@ -35,7 +35,7 @@ spring:
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 1  #令牌桶每秒填充速率
-                redis-rate-limiter.burstCapaciry: 2  #令牌桶总容量
+                redis-rate-limiter.burstCapaciry: 5120  #令牌桶总容量
                 key-resolver: "#{@pathKeysResolver}" #使用spEL表达式按名称引用的bean,它在类 com.example.filter.PathKeyResolver定义的
         - id: order-service
           uri: lb://order-service
@@ -45,7 +45,7 @@ spring:
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapaciry: 2
+                redis-rate-limiter.burstCapaciry: 5120
                 key-resolver: "#{@pathKeysResolver}"
 #redis,配置用于令牌桶限流;若不配置限流的话,直接删除即可
   redis:
