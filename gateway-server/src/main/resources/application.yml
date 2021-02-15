@@ -8,6 +8,14 @@ spring:
       #路由规则
       routes:
         - id: product-service            #路由id,唯一,其中的 - 横线 表示的是 list 或 数组
-          uri: http://localhost:7070/    #微服务目标的地址
+          uri: lb://product-service      #lb是负载均衡的英文单词首写字母微服务目标的地址,根据服务名从注册中心获取服务请求地址
           predicates:                    #断言,通过判断|断言来匹配路由请求规则
             - Path=/product/**           #path路由规则;匹配对应的 url 的请求,将匹配到的请求追加在目标的 url 之后;例如请求 http://localhost:9000/product/1 将会路由到 http://localhost:7070/product/1
+#把gateway路由网关注册到服务注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url: #下行是注册到服务注册中心
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/

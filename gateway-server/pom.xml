@@ -27,7 +27,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!-- 用于gateway路由配置规则的uri调用应用名,即 uri: lb://product-service -->
+        <!-- 用于gateway路由配置规则的uri调用应用名,即 uri: lb://product-service ,添加此依赖默认就开启 @EnableEurekaClient 把gateway路由网关注册到服务注册中心的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
