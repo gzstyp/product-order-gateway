@@ -11,7 +11,7 @@
     <artifactId>order-service</artifactId>
 
     <description>
-        订单服务,它会内部调用商品服务;供web前端提供接口服务
+        订单服务,它会内部调用商品服务;供web前端提供接口服务,是想通过 接口+注解来调用服务
     </description>
 
     <dependencies>
@@ -28,6 +28,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
+        <!--专为feign添加的依赖,是想通过 接口+注解来调用服务 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
