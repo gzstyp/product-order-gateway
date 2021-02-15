@@ -29,6 +29,10 @@ public class AccessFilter implements GlobalFilter, Ordered{
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange,final GatewayFilterChain chain){
         final ServerHttpRequest request = exchange.getRequest();
+        final String uri = request.getURI().getPath();
+        if(uri.contains("/product/1")){//放行
+            return chain.filter(exchange);//继续执行下一个过滤器
+        }
         final String accessTokenUrl = request.getQueryParams().getFirst("accessToken");
         final String accessTokenHeader = request.getHeaders().getFirst("accessToken");
         if((accessTokenUrl != null && accessTokenUrl.length() > 0 ) || (accessTokenHeader != null && accessTokenHeader.length() > 0)){
