@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 /**
  * 限流规则-令牌桶中的url限流,当然可以弄参数限流,比如某个id只能请求一次;IP限流
  * @作者 田应平
@@ -36,7 +38,7 @@ public class ResolverKeyConfig{
     */
     @Bean
     public KeyResolver ipKeyResolver(){
-        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
+        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getHostName());
     }
 
     /**

@@ -46,7 +46,7 @@ spring:
               args:
                 redis-rate-limiter.replenishRate: 1      #令牌桶每秒填充平均速率
                 redis-rate-limiter.burstCapacity: 8      #令牌桶的总容量,10240
-                key-resolver: '#{@pathKeysResolver}'     #使用spEL表达式按名称引用的bean,它在类 com.example.filter.ResolverKeyConfig定义的
+                key-resolver: '#{@ipKeyResolver}'     #使用spEL表达式按名称引用的bean,它在类 com.example.filter.ResolverKeyConfig定义的
 #redis,配置用于令牌桶限流;若不配置限流的话,直接删除即可
   redis:
     timeout: 10000
