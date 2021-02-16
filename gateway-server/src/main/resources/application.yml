@@ -15,7 +15,7 @@ spring:
         cors-configurations:
           '[/**]':  #gateway网关上所有的URI请求都采用下面的配置处理,https://www.cnblogs.com/guanxiaohe/p/12065913.html
             allow-credentials: true #允许携带认证信息
-            allowed-origins:
+            allowed-origins: # - 横线表示是一组|一个集合
               - "http://192.168.3.108"
               - "http://api.fwtai.com"
               - "https://api.fwtai.com"
