@@ -36,7 +36,7 @@ public class ResolverKeyConfig{
     */
     @Bean
     public KeyResolver ipKeyResolver(){
-        return exchange -> Mono.just(exchange.getRequest().getHeaders().getFirst("X-Forwarded-For"));
+        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
     }
 
     /**
