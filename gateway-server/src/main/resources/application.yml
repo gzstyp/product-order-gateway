@@ -28,7 +28,7 @@ spring:
 #限流,它不能和自定义的硬编码网关过滤器com.example.filter.GatewayFilterConfig一起使用???仅能即二选一,推荐使用配置的方式;若不配置限流的话,直接删除即可;https://blog.csdn.net/z69183787/article/details/80110811
       routes:
         - id: product-service
-          uri: lb://product-service #lb代表从注册中心获取服务
+          uri: lb://product-service #lb代表从注册中心获取服务,即根据服务名称从注册中心获取服务的请求地址
           predicates:
             - Path=/product/**
           filters: #若不配置限流的话,直接删除即可
@@ -44,9 +44,9 @@ spring:
           filters: #若不配置限流的话,直接删除即可
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 1      #令牌桶每秒填充平均速率
-                redis-rate-limiter.burstCapacity: 8      #令牌桶的总容量,10240
-                key-resolver: '#{@ipKeyResolver}'        #使用spEL表达式按名称引用的bean,它在类 com.example.filter.ResolverKeyConfig定义的
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 8
+                key-resolver: '#{@ipKeyResolver}'
 #redis,配置用于令牌桶限流;若不配置限流的话,直接删除即可
   redis:
     timeout: 10000
