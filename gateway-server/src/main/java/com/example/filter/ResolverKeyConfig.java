@@ -3,6 +3,7 @@ package com.example.filter;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import reactor.core.publisher.Mono;
 
 /**
@@ -15,9 +16,11 @@ import reactor.core.publisher.Mono;
  * @官网 http://www.fwtai.com
 */
 @Configuration
-public class PathKeyResolver{
+public class ResolverKeyConfig{
 
+    //基于请求路径的限流
     @Bean
+    @Primary
     public KeyResolver pathKeysResolver(){
         /*return new KeyResolver(){
             @Override
@@ -26,5 +29,21 @@ public class PathKeyResolver{
             }
         };*/
         return exchange -> Mono.just(exchange.getRequest().getURI().getPath());//简写
+    }
+
+    /**
+     * 基于请求ip地址的限流,待改进
+    */
+    @Bean
+    public KeyResolver ipKeyResolver(){
+        return exchange -> Mono.just(exchange.getRequest().getHeaders().getFirst("X-Forwarded-For"));
+    }
+
+    /**
+     * 基于(参数)用户的限流,待改进
+   */
+    @Bean
+    public KeyResolver userKeyResolver(){
+        return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("user"));
     }
 }
