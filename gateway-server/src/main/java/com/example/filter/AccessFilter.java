@@ -22,7 +22,7 @@ import reactor.core.publisher.Mono;
  * @Email service@dwlai.com
  * @官网 http://www.fwtai.com
 */
-//@Component//开启后url或请求头没有token则访问不了,正式环境则要开启
+//@Component//todo 开启后url或请求头没有token则访问不了,正式环境则要开启
 public class AccessFilter implements GlobalFilter, Ordered{
 
     final Logger logger = LoggerFactory.getLogger(AccessFilter.class);
