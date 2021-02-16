@@ -44,6 +44,6 @@ public class ResolverKeyConfig{
    */
     @Bean
     public KeyResolver userKeyResolver(){
-        return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("user"));
+        return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("userId"));
     }
 }
